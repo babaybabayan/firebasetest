@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         return view
     }()
     
-    let buttonRegister: UIButton = {
+    lazy var buttonRegister: UIButton = {
         let register = UIButton(type: .system)
         register.setTitle("Register", for: .normal)
         register.setTitleColor(UIColor.white, for: .normal)
@@ -70,11 +70,13 @@ class ViewController: UIViewController {
         return textField
     }()
     
-    let logoImage: UIImageView = {
+    lazy var logoImage: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "eagleLogo")
         logo.contentMode = .scaleAspectFit
         logo.translatesAutoresizingMaskIntoConstraints = false
+        logo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImagePicker)))
+        logo.isUserInteractionEnabled = true
         return logo
     }()
     
@@ -192,35 +194,6 @@ class ViewController: UIViewController {
             }
             
             self.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func handleRegister() {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            print("Success Create Auth !!!")
-            
-            let ref = Database.database().reference().child("Register")
-            let values = ["Name": name, "Email": email]
-            
-            ref.childByAutoId().setValue(values, withCompletionBlock: { (error, reference) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                self.dismiss(animated: true, completion: nil)
-        
-            })
-            
         }
     }
     
