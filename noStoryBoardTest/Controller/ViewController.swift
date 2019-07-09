@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LanguageManager_iOS
 import Firebase
 
 class ViewController: UIViewController {
@@ -36,7 +37,7 @@ class ViewController: UIViewController {
     
     let nameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Name"
+        textField.placeholder = "Name".localiz()
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -72,7 +73,7 @@ class ViewController: UIViewController {
     
     lazy var logoImage: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "eagleLogo")
+        logo.image = UIImage(named: "selectimage")
         logo.contentMode = .scaleAspectFit
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImagePicker)))
@@ -102,7 +103,7 @@ class ViewController: UIViewController {
         setupViewContainer()
         setupRegisterBtn()
         setupImageView()
-        setipSegmenControl()
+        setupSegmenControl()
     }
     
     var inputContainerHeightAcnchor: NSLayoutConstraint?
@@ -162,12 +163,12 @@ class ViewController: UIViewController {
     
     func setupImageView(){
         logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logoImage.bottomAnchor.constraint(equalTo: loginRegisterSegmenControl.topAnchor, constant: 10).isActive = true
+        logoImage.bottomAnchor.constraint(equalTo: loginRegisterSegmenControl.topAnchor, constant: -15).isActive = true
         logoImage.widthAnchor.constraint(equalToConstant: 150).isActive = true
         logoImage.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
-    func setipSegmenControl(){
+    func setupSegmenControl(){
         loginRegisterSegmenControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginRegisterSegmenControl.bottomAnchor.constraint(equalTo: inputContainerView.topAnchor, constant: -12).isActive = true
         loginRegisterSegmenControl.widthAnchor.constraint(equalTo: inputContainerView.widthAnchor).isActive = true

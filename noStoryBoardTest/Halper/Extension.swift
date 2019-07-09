@@ -18,7 +18,6 @@ extension UIImageView {
         
         if let cachedImage = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             self.image = cachedImage
-            print("cachedImage",cachedImage)
             return
         }
         
@@ -29,7 +28,11 @@ extension UIImageView {
                 return
             }
             DispatchQueue.main.async(execute: {
-                self.image = UIImage(data: data!)
+                if let downloadImage = UIImage(data: data!) {
+                    imageCache.setObject(downloadImage, forKey: urlString as AnyObject)
+                    self.image = downloadImage
+                }
+                
             })
         }.resume()
     }

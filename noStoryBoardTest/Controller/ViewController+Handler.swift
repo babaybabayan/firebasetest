@@ -57,8 +57,8 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             
             //save image storage
             let imageName = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("\(imageName).png")
-            if let uploadData = self.logoImage.image!.pngData(){
+            let storageRef = Storage.storage().reference().child("Register").child("\(imageName).jpg")
+            if let uploadData = self.logoImage.image!.jpegData(compressionQuality: 0.1){
                 storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
                         print("Error",error!)
