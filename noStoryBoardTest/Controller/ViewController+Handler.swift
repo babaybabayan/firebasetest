@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -43,6 +44,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func handleRegister() {
+        SVProgressHUD.show()
         guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
             return
         }
@@ -50,6 +52,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print(error!)
+                SVProgressHUD.dismiss()
                 return
             }
             
@@ -77,6 +80,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     }
     
     func registerUserIntoDatabaewithUID(uid: String, values:[String:AnyObject]) {
+        SVProgressHUD.show()
         let ref = Database.database().reference().child("Register")
         ref.child(uid).setValue(values, withCompletionBlock: { (error, reference) in
             if error != nil {
@@ -85,6 +89,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
             }
             print("Success Create Database")
             self.dismiss(animated: true, completion: nil)
+            SVProgressHUD.dismiss()
             
         })
     }

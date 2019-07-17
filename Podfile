@@ -11,6 +11,8 @@ target 'noStoryBoardTest' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   
+  pod 'SVProgressHUD'
+  
   pod 'LanguageManager-iOS'
   
 end

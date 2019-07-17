@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class NewMessageTableViewController: UITableViewController {
 
@@ -25,6 +26,7 @@ class NewMessageTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     func fetchUser() {
+        SVProgressHUD.show()
         Database.database().reference().child("Register").observe(.childAdded
             , with: { (snapshot) in
                 
@@ -35,7 +37,7 @@ class NewMessageTableViewController: UITableViewController {
                     user.email = dictonary["Email"] as? String
                     user.profileImageUrl = dictonary["ProfileImageUrl"] as? String
                     self.users.append(user)
-                    
+                    SVProgressHUD.dismiss()
                     self.tableView.reloadData()
                 }
                 

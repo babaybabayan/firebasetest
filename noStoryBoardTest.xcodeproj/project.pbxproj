@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		79981295E0DA156F26BB2F02 /* Pods_noStoryBoardTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27864049BF35EAB3BF84023 /* Pods_noStoryBoardTest.framework */; };
 		8E4FEB3F22D4D8AD006A4F3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4FEB3E22D4D8AD006A4F3B /* Assets.xcassets */; };
+		8E60697722D7C1C600222DF9 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60697622D7C1C600222DF9 /* ChatLogViewController.swift */; };
 		8E69D3F322D4557C007A9EA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E69D3F522D4557D007A9EA7 /* Localizable.strings */; };
 		8E6C6E7422CF8AC10038012E /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C6E7322CF8AC10038012E /* MessageController.swift */; };
 		8E76A0F622CFA3010054ABD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E76A0F522CFA3010054ABD0 /* GoogleService-Info.plist */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		5CB7DD5AE41ADD70C501C535 /* Pods-noStoryBoardTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-noStoryBoardTest.debug.xcconfig"; path = "Target Support Files/Pods-noStoryBoardTest/Pods-noStoryBoardTest.debug.xcconfig"; sourceTree = "<group>"; };
 		8E4FEB3E22D4D8AD006A4F3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8E60697622D7C1C600222DF9 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		8E69D3F422D4557D007A9EA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8E69D3F622D45599007A9EA7 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8E6C6E7322CF8AC10038012E /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				8E7BD18122CF2087004B1561 /* ViewController.swift */,
 				8EAE000F22D10331006999D9 /* ViewController+Handler.swift */,
 				8EE69F5B22D06B0F005C17AA /* NewMessageTableViewController.swift */,
+				8E60697622D7C1C600222DF9 /* ChatLogViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				8EE69F6122D07769005C17AA /* Users.swift in Sources */,
 				8E7BD18022CF2087004B1561 /* AppDelegate.swift in Sources */,
 				8E6C6E7422CF8AC10038012E /* MessageController.swift in Sources */,
+				8E60697722D7C1C600222DF9 /* ChatLogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U23Q8JY8R;
 				INFOPLIST_FILE = noStoryBoardTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -435,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2U23Q8JY8R;
 				INFOPLIST_FILE = noStoryBoardTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

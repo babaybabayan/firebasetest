@@ -8,6 +8,7 @@
 
 import UIKit
 import LanguageManager_iOS
+import SVProgressHUD
 import Firebase
 
 class ViewController: UIViewController {
@@ -29,9 +30,7 @@ class ViewController: UIViewController {
         register.backgroundColor = UIColor(r: 80, g: 101, b: 161)
         register.layer.cornerRadius = 5
         register.translatesAutoresizingMaskIntoConstraints = false
-        
         register.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
-        
         return register
     }()
     
@@ -74,7 +73,8 @@ class ViewController: UIViewController {
     lazy var logoImage: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "selectimage")
-        logo.contentMode = .scaleAspectFit
+        logo.contentMode = .scaleAspectFill
+        logo.clipsToBounds = true
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleImagePicker)))
         logo.isUserInteractionEnabled = true
@@ -104,6 +104,8 @@ class ViewController: UIViewController {
         setupRegisterBtn()
         setupImageView()
         setupSegmenControl()
+        
+        hideKeyboard()
     }
     
     var inputContainerHeightAcnchor: NSLayoutConstraint?
@@ -115,7 +117,7 @@ class ViewController: UIViewController {
         inputContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        inputContainerHeightAcnchor =  inputContainerView.heightAnchor.constraint(equalToConstant: 150)
+        inputContainerHeightAcnchor = inputContainerView.heightAnchor.constraint(equalToConstant: 150)
         inputContainerHeightAcnchor?.isActive = true
         
         inputContainerView.addSubview(nameTextField)
@@ -184,6 +186,7 @@ class ViewController: UIViewController {
     }
     
     func handleLogin(){
+        SVProgressHUD.show()
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
@@ -191,10 +194,12 @@ class ViewController: UIViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print("Error Logged in: \(error!)")
+                SVProgressHUD.dismiss()
                 return
             }
             
             self.dismiss(animated: true, completion: nil)
+            SVProgressHUD.dismiss()
         }
     }
     

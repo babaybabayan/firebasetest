@@ -52,7 +52,6 @@ class MessageController: UIViewController {
                     users.profileImageUrl = dictonary["ProfileImageUrl"] as? String
                     self.setupViewNavigation(user: users)
                 }
-                
             }
         }
     }
@@ -98,6 +97,13 @@ class MessageController: UIViewController {
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
         
+        titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+        
+    }
+    
+    @objc func showChatController(){
+        let chatController = ChatLogViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(chatController, animated: true)
     }
     
     @objc func handelLogout() {
