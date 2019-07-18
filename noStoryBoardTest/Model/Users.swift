@@ -9,6 +9,7 @@
 import Foundation
 
 class Users {
+    var id: String?
     var name: String?
     var email: String?
     var profileImageUrl: String?

@@ -32,7 +32,7 @@ class NewMessageTableViewController: UITableViewController {
                 
                 if let dictonary = snapshot.value as? [String: AnyObject] {
                     let user = Users()
-                    
+                    user.id = snapshot.key
                     user.name = dictonary["Name"] as? String
                     user.email = dictonary["Email"] as? String
                     user.profileImageUrl = dictonary["ProfileImageUrl"] as? String
@@ -73,41 +73,11 @@ class NewMessageTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 56
     }
-
-}
-
-class UsersCell: UITableViewCell {
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        textLabel?.frame = CGRect(x: 56, y: (textLabel?.frame.origin.y)!, width: (textLabel?.frame.width)!, height: (textLabel?.frame.height)!)
-        detailTextLabel?.frame = CGRect(x: 56, y: (detailTextLabel?.frame.origin.y)!, width: (detailTextLabel?.frame.width)!, height: (detailTextLabel?.frame.height)!)
-    }
-    
-    let profilImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 20
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = ContentMode.scaleToFill
-        return imageView
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        
-        addSubview(profilImage)
-        
-        //addconstraint profileimageview
-        profilImage.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-        profilImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        profilImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profilImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var msgController: MessageController?
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            let user = self.users[indexPath.row]
+            self.msgController?.showChatControllerForUser(user: user)
+        }
     }
 }

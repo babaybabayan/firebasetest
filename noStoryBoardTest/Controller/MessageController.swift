@@ -10,8 +10,11 @@ import UIKit
 import LanguageManager_iOS
 import Firebase
 
-class MessageController: UIViewController {
-
+class MessageController: UITableViewController {
+    
+    var msg = [Message]()
+    var messageDictonary = [String: Message]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,8 +25,10 @@ class MessageController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: imageNewMessage, style: .plain, target: self, action: #selector(handleNewMessage))
         view.backgroundColor = .white
         
-        print("AUTHOK",Auth.auth().currentUser?.uid as Any)
+        tableView.register(UsersCell.self, forCellReuseIdentifier: "cellId")
+        
         checkIfUserLoggedIn()
+        observeMessage()
         
     }
     
@@ -32,8 +37,47 @@ class MessageController: UIViewController {
         checkIfUserLoggedIn()
     }
     
+    func observeMessage() {
+        let ref = Database.database().reference().child("Messages")
+        ref.observe(.childAdded, with: { (snapshot) in
+            if let dictonary = snapshot.value as? [String:AnyObject]{
+                let message = Message()
+                message.toId = dictonary["toId"] as? String
+                message.text = dictonary["textMessage"] as? String
+                message.fromId = dictonary["fromId"] as? String
+                message.timeStamp = dictonary["timeStamp"] as? NSNumber
+                //self.msg.append(message)
+
+                if let toId = message.toId {
+                    self.messageDictonary[toId] = message
+                    self.msg = Array(self.messageDictonary.values)
+                    self.msg.sort(by: { (message1, message2) -> Bool in
+                        return Int(truncating: (message1.timeStamp)!) > Int(truncating: (message2.timeStamp)!)
+                    })
+                }
+               
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+                
+            }
+        }, withCancel: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return msg.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! UsersCell
+        let message = msg[indexPath.row]
+        cell.message = message
+        return cell
+    }
+    
     @objc func handleNewMessage(){
         let newMessageController = NewMessageTableViewController()
+        newMessageController.msgController = self
         let navigationControl = UINavigationController(rootViewController: newMessageController)
         present(navigationControl, animated: true, completion: nil)
     }
@@ -44,8 +88,7 @@ class MessageController: UIViewController {
         }else{
             let uid = Auth.auth().currentUser?.uid
             Database.database().reference().child("Register").child(uid!).observe(.value) { (snapshot) in
-                
-                
+
                 if let dictonary = snapshot.value as? [String: AnyObject]{
                     let users = Users()
                     users.name = dictonary["Name"] as? String
@@ -97,12 +140,11 @@ class MessageController: UIViewController {
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
         
-        titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
-        
     }
     
-    @objc func showChatController(){
+    func showChatControllerForUser(user: Users){
         let chatController = ChatLogViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatController.user = user
         navigationController?.pushViewController(chatController, animated: true)
     }
     

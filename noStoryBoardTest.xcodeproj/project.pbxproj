@@ -10,6 +10,8 @@
 		79981295E0DA156F26BB2F02 /* Pods_noStoryBoardTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F27864049BF35EAB3BF84023 /* Pods_noStoryBoardTest.framework */; };
 		8E4FEB3F22D4D8AD006A4F3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4FEB3E22D4D8AD006A4F3B /* Assets.xcassets */; };
 		8E60697722D7C1C600222DF9 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60697622D7C1C600222DF9 /* ChatLogViewController.swift */; };
+		8E621DFB22E0489D00BCD2C9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E621DFA22E0489D00BCD2C9 /* Message.swift */; };
+		8E621DFE22E05DF100BCD2C9 /* UsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E621DFD22E05DF100BCD2C9 /* UsersCell.swift */; };
 		8E69D3F322D4557C007A9EA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E69D3F522D4557D007A9EA7 /* Localizable.strings */; };
 		8E6C6E7422CF8AC10038012E /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6C6E7322CF8AC10038012E /* MessageController.swift */; };
 		8E76A0F622CFA3010054ABD0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E76A0F522CFA3010054ABD0 /* GoogleService-Info.plist */; };
@@ -27,6 +29,8 @@
 		5CB7DD5AE41ADD70C501C535 /* Pods-noStoryBoardTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-noStoryBoardTest.debug.xcconfig"; path = "Target Support Files/Pods-noStoryBoardTest/Pods-noStoryBoardTest.debug.xcconfig"; sourceTree = "<group>"; };
 		8E4FEB3E22D4D8AD006A4F3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E60697622D7C1C600222DF9 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		8E621DFA22E0489D00BCD2C9 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		8E621DFD22E05DF100BCD2C9 /* UsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCell.swift; sourceTree = "<group>"; };
 		8E69D3F422D4557D007A9EA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8E69D3F622D45599007A9EA7 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8E6C6E7322CF8AC10038012E /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8E621DFC22E05DE000BCD2C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E621DFD22E05DF100BCD2C9 /* UsersCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8E7BD17322CF2087004B1561 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 		8E7BD17E22CF2087004B1561 /* noStoryBoardTest */ = {
 			isa = PBXGroup;
 			children = (
+				8E621DFC22E05DE000BCD2C9 /* Views */,
 				8EAE001122D14AA6006999D9 /* Halper */,
 				8EE69F5F22D07756005C17AA /* Model */,
 				8EE69F5A22D06ADD005C17AA /* Controller */,
@@ -125,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				8EE69F6022D07769005C17AA /* Users.swift */,
+				8E621DFA22E0489D00BCD2C9 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -258,6 +272,8 @@
 				8EE69F5C22D06B0F005C17AA /* NewMessageTableViewController.swift in Sources */,
 				8EAE001022D10331006999D9 /* ViewController+Handler.swift in Sources */,
 				8EAE001322D14AB5006999D9 /* Extension.swift in Sources */,
+				8E621DFB22E0489D00BCD2C9 /* Message.swift in Sources */,
+				8E621DFE22E05DF100BCD2C9 /* UsersCell.swift in Sources */,
 				8E7BD18222CF2087004B1561 /* ViewController.swift in Sources */,
 				8EE69F6122D07769005C17AA /* Users.swift in Sources */,
 				8E7BD18022CF2087004B1561 /* AppDelegate.swift in Sources */,
